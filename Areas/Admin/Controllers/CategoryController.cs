@@ -9,12 +9,12 @@ namespace WebsiteBH.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        ApplicationDbContext _dbConect = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/Category
         public ActionResult Index()
         {
-            var items=_
-            return View();
+            var items = db.Categories;
+            return View(items);
         }
     }
 }
