@@ -9,10 +9,10 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="~/Content/clients/index3.html" class="nav-link">Home</a>
+            <a href="/admin" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Danh mục</a>
+            <a href="/admin/category" class="nav-link">Danh mục</a>
         </li>
     </ul>
 }
@@ -42,7 +42,7 @@
             <h3 class="card-title">Danh sách danh mục</h3>
 
             <div class="card-tools">
-                <a href="/category/add" class="btn btn-primary">Thêm mới</a>
+                <a href="/admin/category/add" class="btn btn-primary">Thêm mới</a>
             </div>
         </div>
         <div class="card-body">
@@ -61,12 +61,16 @@
                         <tr>
                             <td></td>
                             <td></td>
-
                             <td></td>
-
                             <td></td>
                         </tr>
                     }
+            else
+            {
+                <tr>
+                    <td colspan="4">Không có bản ghi nào!!</td>
+                </tr>
+            }
                 </tbody>
             </table>
         </div>

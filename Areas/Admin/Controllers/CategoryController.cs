@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebsiteBH.Models;
+using WebsiteBH.Models.EF;
 
 namespace WebsiteBH.Areas.Admin.Controllers
 {
@@ -15,6 +16,20 @@ namespace WebsiteBH.Areas.Admin.Controllers
         {
             var items = db.Categories;
             return View(items);
+        }
+        public ActionResult Add()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(Category model)
+        {
+            if(ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
     }
 }

@@ -248,6 +248,10 @@
     <Compile Include="Migrations\202310150744301_InitialCreate.designer.cs">
       <DependentUpon>202310150744301_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202310250420161_UpdateCategory.cs" />
+    <Compile Include="Migrations\202310250420161_UpdateCategory.designer.cs">
+      <DependentUpon>202310250420161_UpdateCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -2273,6 +2277,7 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="libman.json" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2353,6 +2358,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202310150744301_InitialCreate.resx">
       <DependentUpon>202310150744301_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202310250420161_UpdateCategory.resx">
+      <DependentUpon>202310250420161_UpdateCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
