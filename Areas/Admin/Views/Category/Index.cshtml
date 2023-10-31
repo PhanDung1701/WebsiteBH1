@@ -58,19 +58,27 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
+                        var i = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr id="trow_@item.Id">
+                                <td>@i</td>
+                                <td>@item.Title</td>
+                                <td>@item.Position</td>
+                                <td>
+                                    <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="#" data-id=" @item.Id " class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                    else
+                    {
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td colspan="4">Không có bản ghi nào!!</td>
                         </tr>
                     }
-            else
-            {
-                <tr>
-                    <td colspan="4">Không có bản ghi nào!!</td>
-                </tr>
-            }
                 </tbody>
             </table>
         </div>
@@ -83,3 +91,26 @@
 
 </section>
 <!-- /.content -->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function (e) {
+                e.preventDefault();
+                var id = $(this).data("id");
+                var conf = confirm("Bạn có muốn xóa bản ghi!");
+                if (conf === true) {
+                    $.ajax({
+                        url: '/admin/category/delete/' + id, // Assuming your delete action accepts the ID as part of the URL
+                        method: 'POST',
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + rs.id).remove();
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+

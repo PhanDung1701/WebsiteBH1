@@ -20,7 +20,7 @@ namespace WebsiteBH.Models.EF
         [Required(ErrorMessage = "Tên danh mục không được để trống")]
         [StringLength(150)]
         public string Title { get; set; }
-
+        public string Alias {  get; set; }
         public string Description { get; set; }
         public string SeoTitle { get; set; }
         [StringLength(150)]
