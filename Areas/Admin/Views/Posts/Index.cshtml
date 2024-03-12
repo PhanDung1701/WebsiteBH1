@@ -1,8 +1,6 @@
-﻿@model PagedList.PagedList<WebsiteBH.Models.EF.News>
-@using PagedList.Mvc;
-@using PagedList;
+﻿@model IEnumerable<WebsiteBH.Models.EF.Posts>
 @{
-    ViewBag.Title = "Danh sách tin tức";
+    ViewBag.Title = "Danh sách bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @section  naviheader{
@@ -23,7 +21,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Quản lý tin tức</h1>
+                <h1>Quản lý bài viết</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -44,24 +42,10 @@
             <h3 class="card-title">@ViewBag.Title</h3>
 
             <div class="card-tools">
-                <a href="/admin/news/add" class="btn btn-primary">Thêm mới</a>
+                <a href="/admin/posts/add" class="btn btn-primary">Thêm mới</a>
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-4">
-                    @using (Html.BeginForm("Index", "News", FormMethod.Get, new {}))
-                    {
-                        <div class="input-group input-group-sm">
-                            @Html.TextBox("Searchtext",new {@class="form-control"})
-                            <input type="text"  name="searchtext" class="form-control">
-                            <span class="input-group-append">
-                                <button type="button" class="btn btn-info btn-flat">Tìm kiếm</button>
-                            </span>
-                        </div>
-                    }
-                </div>
-            </div>
             <table class="table table-hover ">
                 <thead>
                     <tr>
@@ -74,11 +58,10 @@
                         <th></th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+                        var i = 1;
                         foreach (var item in Model)
                         {
                             var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-times text-danger'></i>";
@@ -91,7 +74,7 @@
                                     <a href='#' data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>
                                 <td>
-                                    <a href="/admin/news/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="/admin/posts/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id=" @item.Id " class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
@@ -106,7 +89,6 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -126,7 +108,7 @@
                 var conf = confirm("Bạn có muốn xóa bản ghi!");
                 if (conf === true) {
                     $.ajax({
-                        url: '/admin/news/delete/' + id, // Assuming your delete action accepts the ID as part of the URL
+                        url: '/admin/posts/delete/' + id, // Assuming your delete action accepts the ID as part of the URL
                         method: 'POST',
                         success: function (rs) {
                             if (rs.success) {
@@ -140,3 +122,5 @@
         });
     </script>
 }
+
+
