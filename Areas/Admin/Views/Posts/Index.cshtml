@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WebsiteBH.Models.EF.Posts>
+﻿@model PagedList.PagedList<WebsiteBH.Models.EF.Posts>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "Danh sách bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -46,6 +48,16 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="row">
+                <div class="col-4">
+                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            <input type="text" name="searchtext" class="form-control">
+                        </div>
+                    }
+                </div>
+            </div>
             <table class="table table-hover ">
                 <thead>
                     <tr>
@@ -61,7 +73,7 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = 1;
+                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
                             var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-times text-danger'></i>";
@@ -89,6 +101,7 @@
                     }
                 </tbody>
             </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
         <!-- /.card-body -->
         <div class="card-footer">

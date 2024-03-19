@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,9 +13,23 @@ namespace WebsiteBH.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/Posts
-        public ActionResult Index()
+        public ActionResult Index(string searchtext, int? page)
         {
-            var items=db.Posts.ToList();
+            var pageSize = 5;
+            if (page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<Posts> items = db.Posts.OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(searchtext))
+            {
+                items = items.Where(x => x.Alias.Contains(searchtext) || x.Title.Contains(searchtext));
+
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
             return View(items);
         }
         public ActionResult Add()

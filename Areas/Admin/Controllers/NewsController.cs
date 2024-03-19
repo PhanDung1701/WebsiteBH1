@@ -14,7 +14,7 @@ namespace WebsiteBH.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/News
-        public ActionResult Index(string Searchtext,int? page)
+        public ActionResult Index(string searchtext,int? page)
         {
             var pageSize = 5;
             if(page == null)
@@ -22,9 +22,9 @@ namespace WebsiteBH.Areas.Admin.Controllers
                 page = 1;
             }
             IEnumerable<News> items = db.News.OrderByDescending(x => x.Id);
-            if (!string.IsNullOrEmpty(Searchtext))
+            if (!string.IsNullOrEmpty(searchtext))
             {
-                items = items.Where(x => x.Alias.Contains(Searchtext) || x.Title.Contains(Searchtext));
+                items = items.Where(x => x.Alias.Contains(searchtext) || x.Title.Contains(searchtext));
 
             }
             var pageIndex = page.HasValue?Convert.ToInt32(page):1;
