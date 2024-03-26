@@ -250,6 +250,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -300,6 +301,14 @@
     <Compile Include="Migrations\202403090724331_UpdateActive.cs" />
     <Compile Include="Migrations\202403090724331_UpdateActive.Designer.cs">
       <DependentUpon>202403090724331_UpdateActive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403210636402_Update-4.cs" />
+    <Compile Include="Migrations\202403210636402_Update-4.Designer.cs">
+      <DependentUpon>202403210636402_Update-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403260659312_update5.cs" />
+    <Compile Include="Migrations\202403260659312_update5.Designer.cs">
+      <DependentUpon>202403260659312_update5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3241,6 +3250,10 @@
     <Content Include="Areas\Admin\Views\Posts\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3352,6 +3365,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403090724331_UpdateActive.resx">
       <DependentUpon>202403090724331_UpdateActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403210636402_Update-4.resx">
+      <DependentUpon>202403210636402_Update-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403260659312_update5.resx">
+      <DependentUpon>202403260659312_update5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

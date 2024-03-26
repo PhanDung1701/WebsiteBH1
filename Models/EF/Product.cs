@@ -17,6 +17,8 @@ namespace WebsiteBH.Models.EF
         [StringLength(250)]
         public string Title { get; set; }
         public string Alias { get; set; }
+        [StringLength(50)]
+        public string ProductCode { get; set; }
         public string Description { get; set; }
         public string Detail { get; set; }
         public string Image { get; set; }
@@ -26,6 +28,7 @@ namespace WebsiteBH.Models.EF
         public bool IsHome { get; set; }
         public bool IsFeature { get; set; }
         public bool IsHot { get; set; }
+        public bool IsSale { get; set; }
         public int ProductCategoryId { get; set; }
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set; }

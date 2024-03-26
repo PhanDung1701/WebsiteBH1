@@ -19,7 +19,11 @@ namespace WebsiteBH.Models.EF
         [Required]
         [StringLength(150)]
         public string Title { get; set; }
+        [StringLength(150)]
+        public string Alias { get; set; }
         public string Description { get; set; }
+        [StringLength(150)]
+        public string Icon { get; set; }
         public string SeoTitle { get; set; }
         public string SeoDescription { get; set; }
         public string SeoKeywords { get; set; }

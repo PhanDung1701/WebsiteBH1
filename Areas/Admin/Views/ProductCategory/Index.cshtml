@@ -1,8 +1,7 @@
-﻿@model PagedList.PagedList<WebsiteBH.Models.EF.Posts>
-@using PagedList.Mvc;
-@using PagedList;
+﻿@model IEnumerable<WebsiteBH.Models.EF.ProductCategory>
+
 @{
-    ViewBag.Title = "Danh sách bài viết";
+    ViewBag.Title = "Danh mục sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 @section  naviheader{
@@ -14,7 +13,7 @@
             <a href="/admin" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/products" class="nav-link">@ViewBag.Title</a>
+            <a href="/admin/ProductCategory" class="nav-link">@ViewBag.Title</a>
         </li>
     </ul>
 }
@@ -23,7 +22,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Quản lý bài viết</h1>
+                <h1>Quản lý danh mục sản phẩm</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -44,49 +43,37 @@
             <h3 class="card-title">@ViewBag.Title</h3>
 
             <div class="card-tools">
-                <a href="/admin/posts/add" class="btn btn-primary">Thêm mới</a>
+                <a href="/admin/ProductCategory/add" class="btn btn-primary">Thêm mới</a>
             </div>
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-4">
-                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get, new { }))
-                    {
-                        <div class="input-group input-group-sm">
-                            <input type="text" name="searchtext" class="form-control">
-                        </div>
-                    }
-                </div>
-            </div>
             <table class="table table-hover ">
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Hình ảnh</th>
-                        <th>Tiêu đề</th>
+                        <th>Tên danh mục</th>
                         <th>Ngày tạo</th>
-                        <th>Hiển thị</th>
-                        <th>Thứ tự</th>
                         <th></th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+                        var i = 1;
+                        //var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
-                            var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-times text-danger'></i>";
+                            ////var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td>@i</td>
-                                <td><img src="@item.Image" width="50" /></td>
                                 <td>@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
-                                <td>
+                                @*<td>
                                     <a href='#' data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
-                                </td>
+                                </td>*@
                                 <td>
-                                    <a href="/admin/posts/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
+                                    <a href="/admin/ProductCategory/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
                                     <a href="#" data-id=" @item.Id " class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
@@ -101,7 +88,7 @@
                     }
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -112,6 +99,7 @@
 
 </section>
 <!-- /.content -->
+
 @section scripts{
     <script>
         $(document).ready(function () {
@@ -121,7 +109,7 @@
                 var conf = confirm("Bạn có muốn xóa bản ghi!");
                 if (conf === true) {
                     $.ajax({
-                        url: '/admin/posts/delete/' + id, // Assuming your delete action accepts the ID as part of the URL
+                        url: '/admin/ProductCategory/delete/' + id,
                         method: 'POST',
                         success: function (rs) {
                             if (rs.success) {
@@ -135,5 +123,3 @@
         });
     </script>
 }
-
-
