@@ -60,10 +60,10 @@
                         <label for="exampleInputFile">Ảnh</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                @Html.TextBoxFor(x=>x.Image, new {@id="txtImage",@class="form-control"})
+                                @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
                             </div>
-                            <div class="input-group-append"> 
-                                <input type="button" value="Tải ảnh" onclick="BrowseServer('txtImage');"/>
+                            <div class="input-group-append">
+                                <input type="button" value="Tải ảnh" onclick="BrowseServer('txtImage');" />
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Chi tiết</label>
-                        @Html.TextBoxFor(x => x.Detail, new { @class = "form-control", @id="txtDetail" })
+                        @Html.TextBoxFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">SeoTitle</label>
