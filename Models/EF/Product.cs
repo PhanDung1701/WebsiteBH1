@@ -27,7 +27,7 @@ namespace WebsiteBH.Models.EF
         public string Detail { get; set; }
         public string Image { get; set; }
         public decimal Price { get; set; }
-        public decimal PriceSale { get; set; }
+        public decimal? PriceSale { get; set; }
         public int Quantity { get; set; }
         public bool IsHome { get; set; }
         public bool IsFeature { get; set; }

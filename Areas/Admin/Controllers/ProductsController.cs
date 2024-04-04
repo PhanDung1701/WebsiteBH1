@@ -78,5 +78,37 @@ namespace WebsiteBH.Areas.Admin.Controllers
             ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "Title");
             return View(model);
         }
+        public ActionResult Edit(int id)
+        {
+            ViewBag.ProductCategory = new SelectList(db.ProductCategories.ToList(), "Id", "Title");
+            var item = db.Products.Find(id);
+            return View(item);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Product model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = WebsiteBH.Models.Common.Filter.FilterChar(model.Title);
+                db.Products.Attach(model);
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+        public ActionResult Delete(int id)
+        {
+            var item = db.Products.Find(id);
+            if (item != null)
+            {
+                db.Products.Remove(item);
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
     }
 }
