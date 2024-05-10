@@ -15,7 +15,7 @@ namespace WebsiteBH.Areas.Admin.Controllers
         // GET: Admin/Products
         public ActionResult Index(int? page)
         {
-            IEnumerable<Product> items =db.Products.OrderByDescending(x=>x.Id);
+            IEnumerable<Product> items = db.Products.OrderByDescending(x => x.Id);
             var pageSize = 5;
             if (page == null)
             {
@@ -34,11 +34,11 @@ namespace WebsiteBH.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Product model,List<string> Images,List<int> rDefault)
+        public ActionResult Add(Product model, List<string> Images, List<int> rDefault)
         {
             if (ModelState.IsValid)
             {
-                if(Images != null && Images.Count > 0)
+                if (Images != null && Images.Count > 0)
                 {
                     for (int i = 0; i < Images.Count; i++)
                     {
@@ -65,12 +65,12 @@ namespace WebsiteBH.Areas.Admin.Controllers
                 }
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
-                if(string.IsNullOrEmpty(model.SeoTitle))
+                if (string.IsNullOrEmpty(model.SeoTitle))
                 {
-                    model.SeoTitle =model.Title;
-                } 
-                if(string.IsNullOrEmpty(model.Alias))
-                model.Alias = WebsiteBH.Models.Common.Filter.FilterChar(model.Title);
+                    model.SeoTitle = model.Title;
+                }
+                if (string.IsNullOrEmpty(model.Alias))
+                    model.Alias = WebsiteBH.Models.Common.Filter.FilterChar(model.Title);
                 db.Products.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
