@@ -51,7 +51,6 @@ namespace WebsiteBH.Areas.Admin.Controllers
                 db.Categories.Attach(model);
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = WebsiteBH.Models.Common.Filter.FilterChar(model.Title);
-                model.Position = 1;
                 db.Entry(model).Property(x => x.Title).IsModified = true;
                 db.Entry(model).Property(x => x.Description).IsModified = true;
                 db.Entry(model).Property(x => x.Alias).IsModified = true;

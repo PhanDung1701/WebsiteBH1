@@ -42,5 +42,6 @@ namespace WebsiteBH.Models.EF
         public virtual ICollection<ProductImage> ProductImage { get; set; }
 
         public ICollection<OrderDetail> OrderDetail { get; set; }
+        public int ViewCount { get; internal set; }
     }
 }
