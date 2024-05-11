@@ -8,7 +8,7 @@ using WebsiteBH.Models;
 
 namespace WebsiteBH.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Products

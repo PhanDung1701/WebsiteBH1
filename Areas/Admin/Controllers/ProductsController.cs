@@ -9,7 +9,6 @@ using WebsiteBH.Models.EF;
 
 namespace WebsiteBH.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin,Employee")]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -17,7 +16,7 @@ namespace WebsiteBH.Areas.Admin.Controllers
         public ActionResult Index(int? page)
         {
             IEnumerable<Product> items = db.Products.OrderByDescending(x => x.Id);
-            var pageSize = 10;
+            var pageSize = 8;
             if (page == null)
             {
                 page = 1;
