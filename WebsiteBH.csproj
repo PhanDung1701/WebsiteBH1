@@ -49,7 +49,7 @@
   <ItemGroup>
     <Reference Include="CKFinder, Version=2.4.0.2631, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ckfinder\bin\Debug\CKFinder.dll</HintPath>
+      <HintPath>..\..\..\Downloads\ckfinder\bin\Debug\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -249,6 +249,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -324,6 +325,14 @@
     <Compile Include="Migrations\202405110853085_A1.Designer.cs">
       <DependentUpon>202405110853085_A1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405110934024_A2.cs" />
+    <Compile Include="Migrations\202405110934024_A2.Designer.cs">
+      <DependentUpon>202405110934024_A2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405140330456_A3.cs" />
+    <Compile Include="Migrations\202405140330456_A3.Designer.cs">
+      <DependentUpon>202405140330456_A3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -368,6 +377,7 @@
     <Content Include="Content\assets\images\product_7.png" />
     <Content Include="Content\assets\images\product_8.png" />
     <Content Include="Content\assets\images\product_9.png" />
+    <Content Include="Content\assets\images\bg1.jpg" />
     <Content Include="Content\assets\images\single_1.jpg" />
     <Content Include="Content\assets\images\single_1_thumb.jpg" />
     <Content Include="Content\assets\images\single_2.jpg" />
@@ -3312,7 +3322,6 @@
     <Content Include="Content\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
     <Content Include="Content\ckeditor\samples\sample_posteddata.php" />
     <Content Include="Content\ckeditor\skins\moono\readme.md" />
-    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Add.cshtml" />
@@ -3361,12 +3370,16 @@
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.eot" />
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.ttf" />
     <Content Include="Content\assets\plugins\themify-icons\fonts\themify.woff" />
+    <Content Include="Scripts\autoNumeric-1.9.45.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\ckeditor.rar" />
+    <Content Include="Content\ckfinder.rar" />
+    <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3378,6 +3391,34 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\files\71N-tnRaBlS__AC_SL1500_.jpg" />
+    <Content Include="Uploads\files\d6ed929a3d4b88833780a076ee82d65f_jpg_720x720q80.jpg" />
+    <Content Include="Uploads\files\FVwI65SXoAAWaOo.jpg" />
+    <Content Include="Uploads\files\Screenshot %2810%29.png" />
+    <Content Include="Uploads\files\Screenshot 2023-11-03 220412%281%29.jpg" />
+    <Content Include="Uploads\files\Screenshot 2023-11-03 220412.jpg" />
+    <Content Include="Uploads\files\Screenshot 2024-03-04 155620.jpg" />
+    <Content Include="Uploads\files\Sin.jpg" />
+    <Content Include="Uploads\files\wallpaperflare_com_wallpaper %282%29.jpg" />
+    <Content Include="Uploads\files\wallpaperflare_com_wallpaper.jpg" />
+    <Content Include="Uploads\files\樱狸子 %28Ying li zi%29 - Naked %2816%29.jpg" />
+    <Content Include="Uploads\files\樱狸子 %28Ying li zi%29 - Naked %283%29.jpg" />
+    <Content Include="Uploads\images\Background\bg3.jpg" />
+    <Content Include="Uploads\images\Products\bocchi-blogroll-1672352846343.jpg" />
+    <Content Include="Uploads\images\Products\Ghostblade %28P_2%29_ %282%29.jpg" />
+    <Content Include="Uploads\_thumbs\Files\71N-tnRaBlS__AC_SL1500_.jpg" />
+    <Content Include="Uploads\_thumbs\Files\d6ed929a3d4b88833780a076ee82d65f_jpg_720x720q80.jpg" />
+    <Content Include="Uploads\_thumbs\Files\FVwI65SXoAAWaOo.jpg" />
+    <Content Include="Uploads\_thumbs\Files\Screenshot %2810%29.png" />
+    <Content Include="Uploads\_thumbs\Files\Screenshot 2023-11-03 220412%281%29.jpg" />
+    <Content Include="Uploads\_thumbs\Files\Screenshot 2023-11-03 220412.jpg" />
+    <Content Include="Uploads\_thumbs\Files\Screenshot 2024-03-04 155620.jpg" />
+    <Content Include="Uploads\_thumbs\Files\Sin.jpg" />
+    <Content Include="Uploads\_thumbs\Files\wallpaperflare_com_wallpaper %282%29.jpg" />
+    <Content Include="Uploads\_thumbs\Files\wallpaperflare_com_wallpaper.jpg" />
+    <Content Include="Uploads\_thumbs\Files\樱狸子 %28Ying li zi%29 - Naked %2816%29.jpg" />
+    <Content Include="Uploads\_thumbs\Files\樱狸子 %28Ying li zi%29 - Naked %283%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Sanpham\Byoru - Ahri Bikini %281%29.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3417,9 +3458,10 @@
     <Content Include="Views\Menu\MenuArrivals.cshtml" />
     <Content Include="Views\Menu\MenuLeft.cshtml" />
     <Content Include="Views\Product\Partial_ItemsByCateId.cshtml" />
-    <Content Include="Views\Product\Detail.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\ProductCategory.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Partial_ProductSales.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3506,6 +3548,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405110853085_A1.resx">
       <DependentUpon>202405110853085_A1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405110934024_A2.resx">
+      <DependentUpon>202405110934024_A2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405140330456_A3.resx">
+      <DependentUpon>202405140330456_A3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

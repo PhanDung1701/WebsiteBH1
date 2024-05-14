@@ -65,14 +65,14 @@
                         <th>STT</th>
                         <th>Hình ảnh</th>
                         <th>Tên sản phẩm</th>
-                        <th>Danh mục sản phẩm</th>
+                        <th>Danh mục</th>
                         <th>Số lượng</th>
                         <th>Giá</th>
                         <th>Ngày tạo</th>
-                        <th>Hot</th>
+                        <th>Home</th>
                         <th>Sale</th>
                         <th>Hiển thị</th>
-                        <th></th>
+                        <th style="width:150px;"></th>
                     </tr>
                 </thead>
 
@@ -83,7 +83,7 @@
                         foreach (var item in Model)
                         {
                             var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
-                            var strCheckHome = item.IsHot ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+                            var strCheckHome = item.IsHome ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             var strCheckSale = item.IsSale ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             var strImg = "";
                             var CheckImage = item.ProductImage.FirstOrDefault(x => x.IsDefault);
@@ -91,7 +91,7 @@
                             {
                                 strImg = CheckImage.Image;
                             }
-                            <tr id="trow_@item.Id">
+                            <tr id="trow_@item.Id">                        
                                 <td>@i</td>
                                 <td><img class="imgproduct" data-id="@item.Id" src="@strImg" width="50" /></td>
                                 <td>@item.Title</td>
@@ -142,6 +142,24 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script>
         $(document).ready(function () {
+            $('body').on('click', '.btnDelete', function (e) {
+                e.preventDefault();
+                var id = $(this).data("id");
+                var conf = confirm("Bạn có muốn xóa bản ghi!");
+                if (conf === true) {
+                    $.ajax({
+                        url: '/admin/products/delete/' + id,
+                        method: 'POST',
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + rs.id).remove();
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+        });
             // Display the dialog for managing product images
             $("#dialog").dialog({
                 autoOpen: false,
@@ -163,25 +181,6 @@
                 $('#dialog').dialog('open');
                 return false;
             });
-
-            $('body').on('click', '.btnDelete', function (e) {
-                e.preventDefault();
-                var id = $(this).data("id");
-                var conf = confirm("Bạn có muốn xóa bản ghi!");
-                if (conf === true) {
-                    $.ajax({
-                        url: '/admin/products/delete/' + id,
-                        method: 'POST',
-                        success: function (rs) {
-                            if (rs.success) {
-                                $('#trow_' + rs.id).remove();
-                                location.reload();
-                            }
-                        }
-                    });
-                }
-            });
-        });
         $('body').on('click', '.btnHome', function (e) {
             e.preventDefault();
             var btn = $(this);

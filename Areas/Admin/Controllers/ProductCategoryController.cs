@@ -14,13 +14,15 @@ namespace WebsiteBH.Areas.Admin.Controllers
         // GET: Admin/ProductCategory
         public ActionResult Index()
         {
-            var item = db.ProductCategories;
-            return View(item);
+            var items = db.ProductCategories;
+            return View(items);
         }
+
         public ActionResult Add()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(ProductCategory model)
@@ -34,13 +36,14 @@ namespace WebsiteBH.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View();
         }
         public ActionResult Edit(int id)
         {
             var item = db.ProductCategories.Find(id);
             return View(item);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ProductCategory model)
@@ -54,18 +57,19 @@ namespace WebsiteBH.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(model);
+            return View();
         }
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public JsonResult Delete(int id)
         {
             var item = db.ProductCategories.Find(id);
             if (item != null)
             {
                 db.ProductCategories.Remove(item);
                 db.SaveChanges();
-                return Json(new { success = true });
+                return Json(new { success = true, id = id });
             }
-            return Json(new { success = false });
+            return Json(new { success = false, message = "Xóa bản ghi không thành công." });
         }
     }
 }

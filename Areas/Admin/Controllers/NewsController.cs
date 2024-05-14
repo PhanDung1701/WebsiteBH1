@@ -73,16 +73,18 @@ namespace WebsiteBH.Areas.Admin.Controllers
             }
             return View(model);
         }
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public JsonResult Delete(int id)
         {
             var item = db.News.Find(id);
             if (item != null)
             {
                 db.News.Remove(item);
                 db.SaveChanges();
-                return Json(new { success = true });
+                return Json(new { success = true, id = id });
             }
-            return Json(new { success = false });
+            return Json(new { success = false, message = "Xóa bản ghi không thành công." });
         }
+
     }
 }
