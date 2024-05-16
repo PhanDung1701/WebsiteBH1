@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,14 +13,13 @@ namespace WebsiteBH.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/ProductImage
-        public ActionResult Index(int? id)
+        public ActionResult Index(int Id)
         {
-            ViewBag.ProductId = id;
-            var items = db.ProductImage.Where(x => x.ProductId == id).ToList();
+            ViewBag.ProductId = Id;
+            var items = db.ProductImage.Where(x => x.ProductId == Id).ToList();
             return View(items);
         }
 
-        [HttpPost]
         public ActionResult AddImage(int productId, string url)
         {
             db.ProductImage.Add(new ProductImage
@@ -31,6 +31,7 @@ namespace WebsiteBH.Areas.Admin.Controllers
             db.SaveChanges();
             return Json(new { Success = true });
         }
+
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -39,5 +40,6 @@ namespace WebsiteBH.Areas.Admin.Controllers
             db.SaveChanges();
             return Json(new { success = true });
         }
+
     }
 }
