@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
+using WebsiteBH.Models;
 
 namespace WebsiteBH.Common
 {
     public class Common
     {
+
+
         private static string password = ConfigurationManager.AppSettings["PasswordEmail"];
         private static string Email = ConfigurationManager.AppSettings["Email"];
         public static bool SendMail(string name, string subject, string content,
@@ -21,9 +24,9 @@ namespace WebsiteBH.Common
                 MailMessage message = new MailMessage();
                 var smtp = new SmtpClient();
                 {
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
+                    smtp.Host = "smtp.gmail.com"; //host name
+                    smtp.Port = 587; //port number
+                    smtp.EnableSsl = true; //whether your smtp server requires SSL
                     smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
 
                     smtp.UseDefaultCredentials = false;

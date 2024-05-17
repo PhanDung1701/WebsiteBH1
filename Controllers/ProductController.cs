@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,9 +13,12 @@ namespace WebsiteBH.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Products
-        public ActionResult Index()
+
+        public ActionResult Index(int? page)
         {
-            var items = db.Products.ToList();
+            int pageSize = 12; 
+            int pageNumber = (page ?? 1); 
+            var items = db.Products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
 
             return View(items);
         }
@@ -32,13 +36,12 @@ namespace WebsiteBH.Controllers
 
             return View(item);
         }
-        public ActionResult ProductCategory(string alias, int id)
+        public ActionResult ProductCategory(string alias, int id, int? page)
         {
-            var items = db.Products.ToList();
-            if (id > 0)
-            {
-                items = items.Where(x => x.ProductCategoryId == id).ToList();
-            }
+            int pageSize = 12;
+            int pageNumber = (page ?? 1);
+            var items = db.Products.Where(x => x.ProductCategoryId == id).OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize);
+
             var cate = db.ProductCategories.Find(id);
             if (cate != null)
             {
@@ -51,13 +54,13 @@ namespace WebsiteBH.Controllers
 
         public ActionResult Partial_ItemsByCateId()
         {
-            var items = db.Products.Where(x => x.IsHome && x.IsActive).Take(12).ToList();
+            var items = db.Products.Where(x => x.IsHome && x.IsActive).Take(10).ToList();
             return PartialView(items);
         }
 
         public ActionResult Partial_ProductSales()
         {
-            var items = db.Products.Where(x => x.IsSale && x.IsActive).Take(12).ToList();
+            var items = db.Products.Where(x => x.IsSale && x.IsActive).Take(10).ToList();
             return PartialView(items);
         }
     }

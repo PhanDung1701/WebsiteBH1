@@ -7,34 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Colo Shop Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/bootstrap4/bootstrap.min.css">
+    <link href="~/Content/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/responsive.css">-->
+    @*@Styles.Render("~/Content/assets")*@
+
     <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/bootstrap4/bootstrap.min.css">
     <link href="~/Content/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/OwlCarousel2-2.2.1/animate.css">
     <link rel="stylesheet" type="text/css" href="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
-    <meta name="description" content="@ViewBag.SeoDescription" />
-    <meta name="keywords" itemprop="keywords" content="@ViewBag.SeoKeyWord" />
-    @*<meta name="news_keywords" content="@ViewBag.SeoKeyWord" />*@
-    <link rel="canonical" href="https://www.ten_mien_cua_cac_ban/" />
-    <meta name="robots" content="index,follow,noodp" />
-    <meta name="robots" content="noarchive">
-    <meta property="og:site_name" content="Bán hàng online" />
-    <meta property="og:type" content="Website" />
-    <meta property="og:locale" content="vi_VN" />
-    @*<meta property="fb:app_id" content="232505114857147" />*@
-    @*<meta property="fb:pages" content="1128104117285467" />*@
-    <meta property="og:title" itemprop="name" content="@ViewBag.Title" />
-    <meta property="og:url" itemprop="url" content="https://www.ten_mien_cua_cac_ban/" />
-    <meta property="og:description" content="@ViewBag.SeoDescription" />
-    <meta content="https://cdn.24h.com.vn/upload/2-2018/images/2018-06-14/logo-chan-trang-24h.png" property="og:image" itemprop="thumbnailUrl" />
-    <!--script_breadcrum-->
-    @*@RenderSection("css", required: false)*@
     <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/responsive.css">
-    @*@Styles.Render("~/Content/css")*@
-    @Scripts.Render("~/bundles/modernizr")
-    <script src="~/Content/assets/js/jquery-3.2.1.min.js"></script>
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/assets/js/jquery-3.2.1.min.js"></script>
+    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <div class="super_container">
@@ -48,9 +41,10 @@
             <div class="top_nav">
                 <div class="container">
                     <div class="row">
-                        @*<div class="col-md-6">
-                            <div class="top_nav_left">Hotline: @SettingHelper.GetValue("SettingHotline")</div>
-                        </div>*@
+                        <div class="col-md-6">
+                            <div class="top_nav_left">Hotline: @SettingHelper.GetValue("SettingHotline")   ||   Email: @SettingHelper.GetValue("SettingEmail")</div>
+
+                        </div>
                         <div class="col-md-6 text-right">
                             <div class="top_nav_right">
                                 <ul class="top_nav_menu">
@@ -88,26 +82,27 @@
                                                 My Account
                                                 <i class="fa fa-angle-down"></i>
                                             </a>
+
                                             <ul class="account_selection">
                                                 <li><a href="/account/login"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                                <li><a href="/account/Register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                                <li><a href="/account/register"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                                             </ul>
                                         }
                                         else
                                         {
                                             <a href="#">
-                                                Welcome: @User.Identity.Name
+                                                @User.Identity.Name
                                                 <i class="fa fa-angle-down"></i>
                                             </a>
                                             <ul class="account_selection">
-                                                <li><a href="/"><i class="fa fa-sign-in" aria-hidden="true"></i>Profile</a></li>
-                                                <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-user-plus" aria-hidden="true"></i> Lohout</a></li>
+                                                <li><a href="/account/profile"><i class="fa fa-sign-in" aria-hidden="true"></i>Profile</a></li>
+                                                <li><a href="/products/wishlist"><i class="fa fa-list" aria-hidden="true"></i>Wish List</a></li>
+                                                <li><a href="/products/order"><i class="fa fa-history" aria-hidden="true"></i>Order History</a></li>
+                                                <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-user-plus" aria-hidden="true"></i>Log Out</a></li>
                                             </ul>
                                         }
-
                                     </li>
                                 </ul>
-
                                 @if (Request.IsAuthenticated)
                                 {
                                     <div style="display:none">
@@ -121,7 +116,6 @@
                 </div>
             </div>
 
-
             <!-- Main Navigation -->
 
             <div class="main_nav_container">
@@ -129,13 +123,13 @@
                     <div class="row">
                         <div class="col-lg-12 text-right">
                             <div class="logo_container">
-                                <a href="/">Dung<span>Store</span></a>
+                                <a href="/home">Dung<span>Store</span></a>
                             </div>
                             <nav class="navbar">
                                 @Html.Action("MenuTop", "Menu")
                                 <ul class="navbar_user">
                                     <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                                    <li><a href="/account/profile"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                     <li class="checkout">
                                         <a href="/gio-hang">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -202,10 +196,15 @@
                 </ul>
             </div>
         </div>
+
         @RenderBody()
 
+
+
         <!-- Newsletter -->
-        @*@Html.Action("Partial_Subcrice", "Home")*@
+
+        @Html.Action("Partial_Subcribe", "Home")
+
         <!-- Footer -->
 
         <footer class="footer">
@@ -245,8 +244,6 @@
     </div>
 
 
-    @*@Scripts.Render("~/bundles/jquery")*@
-
 
     <script src="~/Content/assets/styles/bootstrap4/popper.js"></script>
     <script src="~/Content/assets/styles/bootstrap4/bootstrap.min.js"></script>
@@ -257,6 +254,7 @@
     <script src="~/Content/assets/js/custom.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @*@Scripts.Render("~/bundles/bootstrap")*@
     <script src="~/Scripts/jsShopping.js"></script>

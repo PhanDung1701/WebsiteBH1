@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebsiteBH.Models.ShoppingCartItem>
+@using WebsiteBH.Common
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-7">
+    <h2 class="text-center mb-7">Giỏ Hàng Của Bạn</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th>STT</th>
+                    <th>Ảnh sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    var i = 0;
+                    var tongtien = decimal.Zero;
+                    foreach (var item in Model)
+                    {
+                        tongtien += item.TotalPrice;
+                        <tr class="text-center" id="trow_@item.ProductId">
+                            <td>@(i + 1)</td>
+                            <td><img src="@item.ProductImg" width="60" class="img-fluid" /></td>
+                            <td>
+                                <a href="/chi-tiet/@item.Alias-p@(item.ProductId)">
+                                    @item.ProductName
+                                </a>
+                            </td>
+                            <td>@item.CategoryName</td>
+                            <td>@Common.FormatNumber(item.Price, 0) đ</td>
+                            <td>
+                                <input type="number" class="form-control text-center" id="Quantity_@item.ProductId" value="@item.Quantity" min="1" style="width: 80px; margin: auto;" />
+                            </td>
+                            <td>@Common.FormatNumber(item.TotalPrice, 0) đ</td>
+                            <td>
+                                <button type="button" data-id="@item.ProductId" class="btn btn-sm btn-danger btnDelete">Xóa</button>
+                                <button type="button" data-id="@item.ProductId" class="btn btn-sm btn-primary btnUpdate">Cập nhật</button>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                    <tr>
+                        <th colspan="6" class="text-right">Tổng: </th>
+                        <th class="text-center">@Common.FormatNumber(tongtien, 0) đ</th>
+                        <th></th>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <th colspan="8" class="text-center">Không có sản phẩm trong giỏ hàng!</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".btnUpdate").click(function () {
+            var productId = $(this).data("id");
+            var quantity = $("#Quantity_" + productId).val();
+
+            if (parseInt(quantity) < 0) {
+                alert("Số lượng không được âm!");
+                return false;
+            }
+        });
+    });
+</script>
+
+

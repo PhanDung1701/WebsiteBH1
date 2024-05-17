@@ -35,7 +35,7 @@
         <div class="card-header">
             <h3 class="card-title">Ảnh sản phẩm</h3>
 
-            <div class="card-tools">
+            <div class="card-tools" style="margin:20px;">
                 <button type="button" class="btn btn-danger" title="Collapse">
                     Xóa hết
                 </button>
@@ -43,14 +43,14 @@
                 <input type="button" value="Tải ảnh" class="btn btn-success" onclick="BrowseServer('txtImage');" />
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body" ">
             <ul class="glImage">
                 @if (Model != null)
                 {
                     foreach (var item in Model)
                     {
                         <li id="trow_@item.Id">
-                            <img src="@item.Image" width="200" />
+                            <img src="@item.Image" width="150" />
                             <div class="box-btn">
                                 <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete"><i class="fa fa-trash"></i></a>
                                 @if (item.IsDefault)
@@ -59,7 +59,7 @@
                                 }
                                 else
                                 {
-                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-warning btnDefault"><i class="fa-regular fa-ban"></i></a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-warning btnDefault">X</a>
                                 }
                             </div>
                         </li>
@@ -79,30 +79,11 @@
 <!-- /.content -->
 
 <script>
-    $('body').on('click', '.btnDefault', function () {
-        var id = $(this).data('id');
-        var conf = confirm('Bạn có muốn đặt ảnh này làm mặc định không?');
-        if (conf === true) {
-            $.ajax({
-                url: '/admin/productimage/SetDefault',
-                type: 'POST',
-                data: { id: id },
-                success: function (rs) {
-                    if (rs.success) {
-                        $('.btnDefault').removeClass('btn-success btn-warning').addClass('btn-warning').find('i').removeClass('fa fa-check').addClass('fa-regular fa-ban');
-                        $('#trow_' + id + ' .btnDefault').removeClass('btn-warning').addClass('btn-success').find('i').removeClass('fa-regular fa-ban').addClass('fa fa-check');
-                    }
-                }
-            });
-        }
-    });
-
-
-
     function BrowseServer(field) {
         var finder = new CKFinder();
         finder.selectActionFunction = function (fileUrl) {
             debugger;
+             @*document.getElementById(field).value = fileUrl;*@
             AddImage(@ViewBag.productId, fileUrl);
         };
         finder.popup();
@@ -126,7 +107,7 @@
             var conf = confirm('ban có muốn xóa ảnh này không?');
             if (conf === true) {
                 $.ajax({
-                    url: '/admin/productimage/delete',
+                    url: '/admin/ProductImage/delete',
                     type: 'POST',
                     data: { id: id },
                     success: function (rs) {
