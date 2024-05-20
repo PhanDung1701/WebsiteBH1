@@ -8,6 +8,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebsiteBH.Models;
 
+using WebsiteBH;
+
 namespace WebsiteBH.Controllers
 {
     [Authorize]
@@ -32,9 +34,9 @@ namespace WebsiteBH.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -333,7 +335,7 @@ namespace WebsiteBH.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -372,7 +374,6 @@ namespace WebsiteBH.Controllers
             }
             return false;
         }
-
         public enum ManageMessageId
         {
             AddPhoneSuccess,
@@ -384,6 +385,6 @@ namespace WebsiteBH.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

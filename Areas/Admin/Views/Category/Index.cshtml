@@ -16,23 +16,6 @@
         </li>
     </ul>
 }
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Quản lý danh mục</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Danh mục</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
-
 <!-- Main content -->
 <section class="content">
 
@@ -45,21 +28,21 @@
                 <a href="/admin/category/add" class="btn btn-primary">Thêm mới</a>
             </div>
         </div>
-        <div class="card-body">
-            <table class="table table-hover ">
-                <thead>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                     <tr>
                         <th>STT</th>
                         <th>Tên danh mục</th>
                         <th>Thứ tự</th>
-                        <th></th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
                         var i = 1;
-                        foreach (var item in Model)      
+                        foreach (var item in Model)
                         {
                             <tr id="trow_@item.Id">
                                 <td>@i</td>
@@ -67,7 +50,7 @@
                                 <td>@item.Position</td>
                                 <td>
                                     <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary">Sửa</a>
-                                    <a href="#" data-id=" @item.Id " class="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
                             i++;
@@ -82,7 +65,7 @@
                 </tbody>
             </table>
         </div>
-        <!-- /.card-body -->
+
         <div class="card-footer">
         </div>
         <!-- /.card-footer-->
@@ -113,4 +96,3 @@
         });
     </script>
 }
-

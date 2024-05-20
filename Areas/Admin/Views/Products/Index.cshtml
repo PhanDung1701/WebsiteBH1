@@ -19,25 +19,6 @@
         </li>
     </ul>
 }
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<!-- Content Header (Page header) -->
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1>Quản Lý Sản Phẩm</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/admin/home">Home</a></li>
-                    <li class="breadcrumb-item active">@ViewBag.Title</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
-
 <!-- Main content -->
 <section class="content">
 
@@ -53,17 +34,25 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-4">
+                <div class="col-4 custom-margin-bottom">
                     @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { }))
                     {
                         <div class="input-group input-group-sm">
-                            <input type="text" name="searchtext" class="form-control">
+                            <input type="text" name="searchtext" class="form-control" placeholder="Tìm kiếm sản phẩm">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Tìm kiếm</button>
+                            </div>
                         </div>
                     }
                 </div>
             </div>
-            <table class="table table-hover">
-                <thead>
+            <style>
+                .custom-margin-bottom {
+                    margin-bottom: 10px;
+                }
+            </style>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
                     <tr>
                         <th><input type="checkbox" id="SelectAll" /></th>
                         <th>STT</th>
@@ -123,7 +112,6 @@
                 </tbody>
             </table>
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -142,7 +130,6 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script>
         $(document).ready(function () {
-            //hiển thị form upload ảnh
             $("#dialog").dialog({
                 autoOpen: false,
                 show: "fade",
@@ -162,7 +149,6 @@
                 $('#dialog').dialog('open');
                 return false;
             });
-
 
             $('body').on('click', '#BtnDeleteAll', function (e) {
                 e.preventDefault();
@@ -212,6 +198,7 @@
                     }
                 });
             });
+
             $('body').on('click', '.btnDelete', function () {
                 var id = $(this).data("id");
                 var conf = confirm('Bạn Có Muốn Xóa Bản Ghi!');
@@ -233,7 +220,6 @@
                 e.preventDefault();
                 var btn = $(this);
                 var id = btn.data("id");
-                // Loại bỏ điều kiện confirm
                 $.ajax({
                     url: '/admin/products/IsActive',
                     type: 'POST',
@@ -242,8 +228,7 @@
                         if (rs.success) {
                             if (rs.IsActive) {
                                 btn.html("<i class='fa fa-check text-success'></i>");
-                            }
-                            else {
+                            } else {
                                 btn.html("<i class='fas fa-times text-danger'></i>");
                             }
                         }
@@ -255,7 +240,6 @@
                 e.preventDefault();
                 var btn = $(this);
                 var id = btn.data("id");
-                // Loại bỏ điều kiện confirm
                 $.ajax({
                     url: '/admin/products/IsHome',
                     type: 'POST',
@@ -264,8 +248,7 @@
                         if (rs.success) {
                             if (rs.IsHome) {
                                 btn.html("<i class='fa fa-check text-success'></i>");
-                            }
-                            else {
+                            } else {
                                 btn.html("<i class='fas fa-times text-danger'></i>");
                             }
                         }
@@ -277,7 +260,6 @@
                 e.preventDefault();
                 var btn = $(this);
                 var id = btn.data("id");
-                // Loại bỏ điều kiện confirm
                 $.ajax({
                     url: '/admin/products/IsSale',
                     type: 'POST',
@@ -286,8 +268,7 @@
                         if (rs.success) {
                             if (rs.IsSale) {
                                 btn.html("<i class='fa fa-check text-success'></i>");
-                            }
-                            else {
+                            } else {
                                 btn.html("<i class='fas fa-times text-danger'></i>");
                             }
                         }
@@ -297,4 +278,3 @@
         });
     </script>
 }
-

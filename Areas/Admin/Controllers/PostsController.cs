@@ -9,6 +9,7 @@ using WebsiteBH.Models.EF;
 
 namespace WebsiteBH.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Nhân viên")]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

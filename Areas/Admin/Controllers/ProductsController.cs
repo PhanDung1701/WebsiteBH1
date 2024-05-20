@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace WebsiteBH.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Nhân viên")]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

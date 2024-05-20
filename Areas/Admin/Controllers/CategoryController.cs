@@ -8,6 +8,7 @@ using WebsiteBH.Models.EF;
 
 namespace WebsiteBH.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
