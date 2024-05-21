@@ -1,43 +1,110 @@
-﻿@model WebsiteBH.Models.RegisterViewModel
+﻿@using WebsiteBH.Models
+@model RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Đăng ký";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+    <style>
+        body {
+            background-color: #508bfc;
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
+        .register-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
 
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <h4>Create a new account.</h4>
-        <hr />
-        @Html.ValidationSummary("", new { @class = "text-danger" })
-        <div class="row">
-            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="offset-md-2 col-md-10">
-                <input type="submit" value="Register" class="btn btn-outline-dark" />
-            </div>
-        </div>
-    }
-</main>
+        .register-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+        }
 
-@section Scripts {
+            .register-card .form-control {
+                background-color: #e8f0fe;
+                border: none;
+                color: #000000;
+            }
+
+                .register-card .form-control::placeholder {
+                    color: #ccc;
+                }
+
+            .register-card .btn-primary {
+                background-color: #1a73e8;
+                border: none;
+            }
+
+                .register-card .btn-primary:hover {
+                    background-color: #1558b0;
+                }
+
+        .register-title {
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container register-container">
+        <div class="register-card">
+            <h4 class="text-center register-title">Đăng ký</h4>
+            <hr />
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, "Email", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.FullName, "Họ và tên", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = "Họ và tên" })
+                    @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Phone, "Số điện thoại", new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "Số điện thoại" })
+                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, "Mật khẩu", new { @class = "control-label" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, "Xác nhận mật khẩu", new { @class = "control-label" })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Xác nhận mật khẩu" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group text-center">
+                    <input type="submit" value="Đăng ký" class="btn btn-primary btn-block" />
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
-}
+</body>
+</html>
