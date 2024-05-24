@@ -258,6 +258,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -354,9 +355,14 @@
     <Compile Include="Migrations\202405211039423_Update215.Designer.cs">
       <DependentUpon>202405211039423_Update215.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405240212300_update245.cs" />
+    <Compile Include="Migrations\202405240212300_update245.Designer.cs">
+      <DependentUpon>202405240212300_update245.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EF\LikeProduct.cs" />
+    <Compile Include="Models\EF\ReviewProduct.cs" />
     <Compile Include="Models\EF\ThongKe.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\Payments\VnPayLibrary.cs" />
@@ -3586,6 +3592,10 @@
     <Content Include="Views\ShoppingCart\CheckOutSuccess.cshtml" />
     <Content Include="Views\ShoppingCart\VnpayReturn.cshtml" />
     <Content Include="Views\Home\Partial_Subcribe.cshtml" />
+    <Content Include="Views\Review\_Review.cshtml" />
+    <Content Include="Views\Review\LichSuDonHang.cshtml" />
+    <Content Include="Views\Review\_Load_Review.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3692,6 +3702,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405211039423_Update215.resx">
       <DependentUpon>202405211039423_Update215.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405240212300_update245.resx">
+      <DependentUpon>202405240212300_update245.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

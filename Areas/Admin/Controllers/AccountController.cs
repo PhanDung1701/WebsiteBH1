@@ -72,7 +72,7 @@ namespace WebsiteBH.Areas.Admin.Controllers
                                                {
                                                    Id = u.Id,
                                                    UserName = u.UserName,
-                                                   FullName = u.Fullname,
+                                                   FullName = u.FullName,
                                                    Phone = u.Phone,
                                                    Email = u.Email,
                                                    Role = (from userRole in u.Roles
@@ -109,7 +109,7 @@ namespace WebsiteBH.Areas.Admin.Controllers
                 {
                     UserName = model.UserName,
                     Email = model.Email,
-                    Fullname = model.FullName,
+                    FullName = model.FullName,
                     Phone = model.Phone
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -234,7 +234,7 @@ namespace WebsiteBH.Areas.Admin.Controllers
             {
                 var oldItem = db.Users.Find(model.Id);
                 oldItem.UserName = model.UserName;
-                oldItem.Fullname = model.Fullname;
+                oldItem.FullName = model.FullName;
                 oldItem.Phone = model.Phone;
                 oldItem.Email = model.Email;
                 oldItem.RoleNames = model.RoleNames;

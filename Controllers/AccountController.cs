@@ -9,7 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebsiteBH.Models;
-using System.Data.Entity;
+using WebsiteBH.Models;
+using WebsiteBH;
 
 namespace WebsiteBH.Controllers
 {
@@ -18,7 +19,6 @@ namespace WebsiteBH.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -54,6 +54,48 @@ namespace WebsiteBH.Controllers
             }
         }
 
+
+        public async Task<ActionResult> Profile()
+        {
+            var user = await UserManager.FindByNameAsync(User.Identity.Name);
+            var item = new CreateAccountViewModel();
+            item.Email = user.Email;
+            item.FullName = user.FullName;
+            item.Phone = user.Phone;
+            item.UserName = user.UserName;
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> PostProfile(CreateAccountViewModel req)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(req); // Return the same view with validation errors
+            }
+
+            var user = await UserManager.FindByEmailAsync(req.Email);
+            user.FullName = req.FullName;
+            user.Phone = req.Phone;
+
+            var rs = await UserManager.UpdateAsync(user);
+            if (rs.Succeeded)
+            {
+                return RedirectToAction("Profile");
+            }
+
+            // If update fails, create a new instance of CreateAccountViewModel
+            var model = new CreateAccountViewModel
+            {
+                Email = user.Email,
+                FullName = user.FullName,
+                Phone = user.Phone,
+                UserName = user.UserName
+            };
+
+            return View(model);
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -88,7 +130,7 @@ namespace WebsiteBH.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Sai Tên Đăng Nhập Hoặc Mật Khẩu");
+                    ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
         }
@@ -136,6 +178,7 @@ namespace WebsiteBH.Controllers
             }
         }
 
+
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -153,23 +196,19 @@ namespace WebsiteBH.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Fullname = model.FullName, Phone = model.Phone, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (user != null)
-                    {
-                        UserManager.AddToRole(user.Id, "Customer");
-                    }
-                    /*await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);*/
-
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    UserManager.AddToRole(user.Id, "Customer");
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -208,8 +247,9 @@ namespace WebsiteBH.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await UserManager.FindByNameAsync(model.Email);
+                var it = (await UserManager.IsEmailConfirmedAsync(user.Id));
+                if (user == null)
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -219,7 +259,8 @@ namespace WebsiteBH.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                WebsiteBH.Common.Common.SendMail("ShopOnline", "Quên mật khẩu", "Bạn click vào <a href='" + callbackUrl + "'>link này</a> để reset mật khẩu", model.Email);
+                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 
@@ -254,7 +295,7 @@ namespace WebsiteBH.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByEmailAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
@@ -398,8 +439,6 @@ namespace WebsiteBH.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            ShoppingCart cart = (ShoppingCart)Session["Cart"];
-            /*cart.ClearCart();*/
             return RedirectToAction("Index", "Home");
         }
 
@@ -430,91 +469,6 @@ namespace WebsiteBH.Controllers
 
             base.Dispose(disposing);
         }
-
-        public ActionResult Profile()
-        {
-            string currentUserId = User.Identity.GetUserId();
-            if (string.IsNullOrEmpty(currentUserId))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var user = db.Users.Find(currentUserId);
-
-            if (user == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            var roleList = new SelectList(db.Roles, "Name", "Name", user.RoleNames);
-            ViewBag.Role = roleList;
-
-            return View(user);
-        }
-
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Profile(ApplicationUser model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = db.Users.Find(model.Id);
-
-                if (user != null)
-                {
-                    user.UserName = model.UserName;
-                    user.Fullname = model.Fullname;
-                    user.Phone = model.Phone;
-                    user.Email = model.Email;
-                    user.RoleNames = model.RoleNames;
-
-                    db.Entry(user).State = EntityState.Modified;
-                    db.SaveChanges();
-
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-
-            return View(model);
-
-
-            /*if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Users.Attach(model);
-                    db.Entry(model).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    var errorMessages = ex.EntityValidationErrors
-                        .SelectMany(x => x.ValidationErrors)
-                        .Select(x => x.ErrorMessage);
-
-                    var fullErrorMessage = string.Join("; ", errorMessages);
-                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
-                    throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
-                }
-            }
-            return View(model);*/
-        }
-
-        public ActionResult ReturnToPreviousPage()
-        {
-            if (Request.UrlReferrer != null)
-            {
-                return Redirect(Request.UrlReferrer.ToString());
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
-
 
         #region Helpers
         // Used for XSRF protection when adding external logins

@@ -14,7 +14,7 @@ namespace WebsiteBH.Models
     public class ApplicationUser : IdentityUser
     {
 
-        public string Fullname { get; set; }
+        public string FullName { get; set; }
         public string Phone { get; set; }
         public List<string> RoleNames { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -32,7 +32,7 @@ namespace WebsiteBH.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+        public DbSet<ReviewProduct> Reviews { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Adv> Advs { get; set; }
         public DbSet<Posts> Posts { get; set; }

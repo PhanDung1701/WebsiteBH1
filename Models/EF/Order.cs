@@ -20,6 +20,7 @@ namespace WebsiteBH.Models.EF
         public string Code { get; set; }
         [Required]
         [StringLength(50)]
+        public string CustomerId { get; set; }
         public string CustomerName { get; set; }
         [Required]
         public string Phone { get; set; }

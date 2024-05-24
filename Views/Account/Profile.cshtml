@@ -1,0 +1,74 @@
+﻿@model WebsiteBH.Models.CreateAccountViewModel
+@{
+    ViewBag.Title = "Profile";
+}
+
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Slider -->
+<style>
+    .news_section_container {
+        margin-top: 180px;
+    }
+
+    .row-item-new {
+        margin-bottom: 20px;
+    }
+
+    .title-news {
+        font-size: 24px;
+        border-bottom: 1px solid;
+        padding: 15px 0;
+        margin-bottom: 25px;
+    }
+
+    .img-box img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+
+<div class="container news_section_container">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("PostProfile", "Account"))
+            {
+                @Html.ValidationSummary(false)
+                @Html.AntiForgeryToken()
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Full Name</th>
+                            <td><input type="text" class="form-control" name="FullName" value="@Model.FullName"></td>
+                        </tr>
+                        <tr>
+                            <th>Username</th>
+                            <td><input type="text" class="form-control" name="UserName" value="@Model.UserName" readonly></td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td><input type="text" class="form-control" name="Phone" value="@Model.Phone"></td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td><input type="text" class="form-control" name="Email" value="@Model.Email" readonly></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Cập nhật</button>
+                </div>
+            }
+        </div>
+        <div class="col-md-12">
+            @Html.Action("LichSuDonHang", "Review")
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
