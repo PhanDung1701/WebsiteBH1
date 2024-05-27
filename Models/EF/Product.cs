@@ -41,7 +41,8 @@ namespace WebsiteBH.Models.EF
         public bool IsActive { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
         public virtual ICollection<ProductImage> ProductImage { get; set; }
-
+        public virtual ICollection<ReviewProduct> Reviews { get; set; }
+        public virtual ICollection<Wishlist> Wishlists { get; set; }
         public ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual ICollection<ParentComment> ParentComments { get; set; }
         public int ViewCount { get; internal set; }

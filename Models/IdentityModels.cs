@@ -32,6 +32,7 @@ namespace WebsiteBH.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<ReviewProduct> Reviews { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Adv> Advs { get; set; }

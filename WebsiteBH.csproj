@@ -260,6 +260,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -359,11 +360,16 @@
     <Compile Include="Migrations\202405240212300_update245.Designer.cs">
       <DependentUpon>202405240212300_update245.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405240330535_Update2451.cs" />
+    <Compile Include="Migrations\202405240330535_Update2451.Designer.cs">
+      <DependentUpon>202405240330535_Update2451.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EF\LikeProduct.cs" />
     <Compile Include="Models\EF\ReviewProduct.cs" />
     <Compile Include="Models\EF\ThongKe.cs" />
+    <Compile Include="Models\EF\Wishlist.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\Payments\VnPayLibrary.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
@@ -3523,10 +3529,6 @@
     <Content Include="Uploads\files\wallpaperflare_com_wallpaper.jpg" />
     <Content Include="Uploads\files\樱狸子 %28Ying li zi%29 - Naked %2816%29.jpg" />
     <Content Include="Uploads\files\樱狸子 %28Ying li zi%29 - Naked %283%29.jpg" />
-    <Content Include="Uploads\images\Background\use1.jpg" />
-    <Content Include="Uploads\images\Background\bg3.jpg" />
-    <Content Include="Uploads\images\Products\bocchi-blogroll-1672352846343.jpg" />
-    <Content Include="Uploads\images\Products\Ghostblade %28P_2%29_ %282%29.jpg" />
     <Content Include="Uploads\_thumbs\Files\71N-tnRaBlS__AC_SL1500_.jpg" />
     <Content Include="Uploads\_thumbs\Files\d6ed929a3d4b88833780a076ee82d65f_jpg_720x720q80.jpg" />
     <Content Include="Uploads\_thumbs\Files\FVwI65SXoAAWaOo.jpg" />
@@ -3596,6 +3598,7 @@
     <Content Include="Views\Review\LichSuDonHang.cshtml" />
     <Content Include="Views\Review\_Load_Review.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Wishlist\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3605,6 +3608,7 @@
     <Folder Include="Migrations\202404040618439_4\" />
     <Folder Include="Migrations\202405110322337_Update11\" />
     <Folder Include="Migrations\202405211039248_Update21\" />
+    <Folder Include="Uploads\images\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -3705,6 +3709,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405240212300_update245.resx">
       <DependentUpon>202405240212300_update245.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405240330535_Update2451.resx">
+      <DependentUpon>202405240330535_Update2451.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
