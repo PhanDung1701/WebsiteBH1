@@ -54,7 +54,7 @@ COLOR PALETTE
 body
 {
 	font-family: 'Poppins', sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 23px;
 	font-weight: 400;
 	background: #FFFFFF;
@@ -76,7 +76,7 @@ ul
 p
 {
 	font-family: 'Poppins', sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 1.7;
 	font-weight: 500;
 	color: #989898;
@@ -805,7 +805,7 @@ section
 }
 .logo_container a
 {
-	font-size: 30px;
+	font-size: 25px;
 	color: #1e1e27;
 	font-weight: 700;
 	text-transform: uppercase;

@@ -272,6 +272,28 @@ namespace WebsiteBH.Areas.Admin.Controllers
             }
             return View(model);*/
         }
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            try
+            {
+                var user = db.Users.Find(id);
+                if (user == null)
+                {
+                    return Json(new { success = false });
+                }
+
+                db.Users.Remove(user);
+                db.SaveChanges();
+
+                return Json(new { success = true });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+
     }
 
 

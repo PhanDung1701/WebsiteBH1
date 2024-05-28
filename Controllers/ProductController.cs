@@ -54,7 +54,7 @@ namespace WebsiteBH.Controllers
 
         public ActionResult Partial_ItemsByCateId()
         {
-            var items = db.Products.Where(x => x.IsHome && x.IsActive).Take(10).ToList();
+            var items = db.Products.Where(x => x.IsHome && x.IsActive).Take(15).ToList();
             return PartialView(items);
         }
 

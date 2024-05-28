@@ -62,6 +62,7 @@
                                 </td>
                                 <td>
                                     <a href="/admin/account/edit/@item.Id" class="btn btn-sm btn-danger">Cập Nhật</a>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteUser('@item.Id')">Xóa</button>
                                 </td>
                             </tr>
                             i++;
@@ -75,7 +76,7 @@
                     }
                 </tbody>
             </table>
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -87,3 +88,24 @@
 
 </section>
 <!-- /.content -->
+<script>
+    function deleteUser(userId) {
+        $.ajax({
+            url: '/admin/account/delete/' + userId,
+            type: 'POST',
+            dataType: 'json',
+            success: function (result) {
+                if (result.success) {
+                    location.reload(); // Ví dụ: Refresh lại trang
+                } else {
+
+                }
+            },
+            error: function () {
+
+            }
+        });
+    }
+</script>
+
+

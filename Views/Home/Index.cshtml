@@ -4,21 +4,19 @@
 }
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
 <!-- Slider -->
-
-<div class="main_slider" style="background-image: url(/Uploads/images/Background/bg1.jpg) ">
-    <div class="container fill_height">
-        <div class="row align-items-center fill_height">
-            <div class="col">
-                <div class="main_slider_content">
-                    <h6>Spring / Summer Collection 2017</h6>
-                    <h1>Get up to 30% Off New Arrivals</h1>
-                    <div class="red_button shop_now_button"><a href="#">shop now</a></div>
-                </div>
-            </div>
+<div class="main_slider" style="background-image: url('/Uploads/images/Background/January.png'); background-size: contain; background-repeat: no-repeat; background-position: center; height: 100vh;">
+    <div class="container fill_height" style="height: 100%; display: flex; align-items: center; justify-content: center;">
+        <div class="row align-items-center fill_height" style="height: 100%; width: 100%; display: flex; justify-content: center;">
+            @*<div class="col">
+                    <div class="main_slider_content">
+                        <h6>Bộ sưu tập xuân/hè 2024</h6>
+                        <h1>Giảm giá 30% cho các sản phẩm mới</h1>
+                        <div class="red_button shop_now_button"><a href="/san-pham">Xem thêm</a></div>
+                    </div>
+                </div>*@
         </div>
     </div>
 </div>
-
 <!-- Banner -->
 <!--@Html.Action("MenuProductCategory", "Menu")-->
 <!-- New Arrivals -->
@@ -36,38 +34,39 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="deal_ofthe_week_img">
-                    <img src="~/Content/assets/images/deal_ofthe_week.png" alt="">
+                    <img src="~/Uploads/images/Products/sad1.jpg" alt="" style="width: 100%; object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-6 text-right deal_ofthe_week_col">
                 <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
                     <div class="section_title">
-                        <h2>Deal Of The Week</h2>
+                        <h2>Sale hot trong tuần</h2>
                     </div>
                     <ul class="timer">
                         <li class="d-inline-flex flex-column justify-content-center align-items-center">
                             <div id="day" class="timer_num">03</div>
-                            <div class="timer_unit">Day</div>
+                            <div class="timer_unit">Ngày</div>
                         </li>
                         <li class="d-inline-flex flex-column justify-content-center align-items-center">
                             <div id="hour" class="timer_num">15</div>
-                            <div class="timer_unit">Hours</div>
+                            <div class="timer_unit">Giờ</div>
                         </li>
                         <li class="d-inline-flex flex-column justify-content-center align-items-center">
                             <div id="minute" class="timer_num">45</div>
-                            <div class="timer_unit">Mins</div>
+                            <div class="timer_unit">Phút</div>
                         </li>
                         <li class="d-inline-flex flex-column justify-content-center align-items-center">
                             <div id="second" class="timer_num">23</div>
-                            <div class="timer_unit">Sec</div>
+                            <div class="timer_unit">Giây</div>
                         </li>
                     </ul>
-                    <div class="red_button deal_ofthe_week_button"><a href="#">shop now</a></div>
+                    <div class="red_button deal_ofthe_week_button"><a href="/san-pham">Xem thêm</a></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Best Sellers -->
 @Html.Action("Partial_ProductSales", "Product")
