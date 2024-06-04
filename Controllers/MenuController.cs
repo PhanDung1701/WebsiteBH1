@@ -3,26 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 using WebsiteBH.Models;
 
-namespace WebsiteBH.Controllers
+namespace WebBanHangOnline.Controllers
 {
     public class MenuController : Controller
     {
-        private ApplicationDbContext db=new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Menu
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult MenuTop()
         {
-            var items=db.Categories.OrderBy(x=>x.Position).ToList();
-            return PartialView("MenuTop",items);
+            var items = db.Categories.OrderBy(x => x.Position).ToList();
+            return PartialView("MenuTop", items);
         }
+
         public ActionResult MenuProductCategory()
         {
-            var items=db.ProductCategories.ToList();
+            var items = db.ProductCategories.ToList();
             return PartialView("MenuProductCategory", items);
         }
         public ActionResult MenuLeft(int? id)
@@ -40,5 +43,6 @@ namespace WebsiteBH.Controllers
             var items = db.ProductCategories.ToList();
             return PartialView("MenuArrivals", items);
         }
+
     }
 }

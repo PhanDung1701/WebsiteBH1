@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "Thanh toán";
 }
+
+
 <style>
     .error {
         color: red;
@@ -18,8 +20,7 @@
             <div class="breadcrumbs d-flex flex-row align-items-center">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li class="active"><a href="/gio-hang"><i class="fa fa-angle-right" aria-hidden="true"></i>Giỏ hàng</a></li>
-                    <li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>Thanh Toán</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Giỏ hàng</a></li>
                 </ul>
             </div>
 
@@ -43,7 +44,6 @@
                     </div>
                     <div class="col-md-3">
                         @Html.Action("Partial_Item_ThanhToan", "ShoppingCart")
-
                     </div>
                 </div>
             }
@@ -87,17 +87,13 @@
                     'Email': {
                         required: true,
                         email: true
-                    },
-                    'UserId': {
-                        required: true
                     }
                 },
                 messages: {
                     'CustomerName': 'Bạn khổng để trống trường này',
                     'Phone': 'Bạn khổng để trống trường này',
                     'Address': 'Bạn khổng để trống trường này',
-                    'Email': 'Email chưa hợp lệ',
-                    'UserId': 'Người dùng chưa hợp lệ'
+                    'Email': 'Email chưa hợp lệ'
                 }
             });
         });

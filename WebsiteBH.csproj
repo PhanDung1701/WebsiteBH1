@@ -364,6 +364,14 @@
     <Compile Include="Migrations\202405240330535_Update2451.Designer.cs">
       <DependentUpon>202405240330535_Update2451.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405290126130_update295.cs" />
+    <Compile Include="Migrations\202405290126130_update295.Designer.cs">
+      <DependentUpon>202405290126130_update295.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405290145438_update2951.cs" />
+    <Compile Include="Migrations\202405290145438_update2951.Designer.cs">
+      <DependentUpon>202405290145438_update2951.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EF\LikeProduct.cs" />
@@ -3513,6 +3521,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsConvert.js" />
     <Content Include="Scripts\jsShopping.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Uploads\files\68d9cb22-089d-4b9c-9fe7-a2c26d4f23df.gif" />
@@ -3529,8 +3538,8 @@
     <Content Include="Uploads\files\wallpaperflare_com_wallpaper.jpg" />
     <Content Include="Uploads\files\樱狸子 %28Ying li zi%29 - Naked %2816%29.jpg" />
     <Content Include="Uploads\files\樱狸子 %28Ying li zi%29 - Naked %283%29.jpg" />
-    <Content Include="Uploads\images\Background\bg23.png" />
     <Content Include="Uploads\images\Background\January.png" />
+    <Content Include="Uploads\images\Background\user1.png" />
     <Content Include="Uploads\images\Products\aa1.jpg" />
     <Content Include="Uploads\images\Products\aa13.jpg" />
     <Content Include="Uploads\images\Products\aa4.jpg" />
@@ -3611,12 +3620,75 @@
     <Content Include="Uploads\_thumbs\Files\樱狸子 %28Ying li zi%29 - Naked %2816%29.jpg" />
     <Content Include="Uploads\_thumbs\Files\樱狸子 %28Ying li zi%29 - Naked %283%29.jpg" />
     <Content Include="Uploads\_thumbs\Images\Background\4e5b1e974d475aaa999dec762ab3c913 %281%29.jpg" />
-    <Content Include="Uploads\_thumbs\Images\Background\bg1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Background\bg23.png" />
+    <Content Include="Uploads\_thumbs\Images\Background\January.png" />
     <Content Include="Uploads\_thumbs\Images\Background\Sayo-Momo-Kafka-Succubus-Honkai-Star-Rail-2.jpg" />
-    <Content Include="Uploads\_thumbs\Images\Products\1.jpg" />
-    <Content Include="Uploads\_thumbs\Images\Products\2.jpg" />
-    <Content Include="Uploads\_thumbs\Images\Products\4.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\aa1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\aa13.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\aa4.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\aaa1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\aaa12.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\aaa13.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\adsadr1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\adsadr2.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\adsadr3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\Ao1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\Ao3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\Ao4.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bbbx7.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bbbx8.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bbbx9.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bbnn1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bbnn6.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bbnn7.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bnbnb1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bnbnb2.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\bnbnb5.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ccccc1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ccccc2.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ccccc5.jpg" />
     <Content Include="Uploads\_thumbs\Images\Products\Ghostblade %28P_2%29_ %282%29.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\gád1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\gád3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\gád9.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\kkkkk1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\kkkkk8.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\kkkkk9.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\mu2.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\mu221.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\mu222.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\mu223.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\mu3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\mu6.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\sad1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\sad12.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\sad14.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\sadsa1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\sadsa12.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\sadsa14.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\vvvvv3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\vvvvv9.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\zxccz1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\zxccz7.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\zxccz9.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\zzzzz1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\zzzzz14.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\zzzzz19.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádazc1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádazc2.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádazc4.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádttt1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádttt2.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádttt3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádád1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádád12.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádád14.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádáeê1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádáeê3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\ádáeê7.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\âd1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\âd12.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Products\âd13.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3788,6 +3860,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405240330535_Update2451.resx">
       <DependentUpon>202405240330535_Update2451.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405290126130_update295.resx">
+      <DependentUpon>202405290126130_update295.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405290145438_update2951.resx">
+      <DependentUpon>202405290145438_update2951.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

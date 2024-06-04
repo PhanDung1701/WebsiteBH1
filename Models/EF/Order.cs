@@ -4,35 +4,35 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using WebsiteBH.Models.EF;
+using WebsiteBH.Models;
 
 namespace WebsiteBH.Models.EF
 {
     [Table("tb_Order")]
     public class Order : CommonAbstract
     {
-        public Order() {
-            this.OrderDetails=new HashSet<OrderDetail>();
+        public Order()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
         [Key]
-        [DatabaseGeneratedAtribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         public string Code { get; set; }
-        [Required]
-        [StringLength(50)]
-        public string CustomerId { get; set; }
+        [Required(ErrorMessage = "Tên khách hàng không để trống")]
         public string CustomerName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Số điện thoại không để trống")]
         public string Phone { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Địa chỉ khổng để trống")]
         public string Address { get; set; }
         public string Email { get; set; }
-        public string UserId { get; set; }
         public decimal TotalAmount { get; set; }
         public int Quantity { get; set; }
         public int TypePayment { get; set; }
+        public string CustomerId { get; set; }
         public int Status { get; set; }
-
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }
