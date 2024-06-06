@@ -14,11 +14,18 @@ namespace WebsiteBH.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Products
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(string searchTerm, int? page)
         {
-            int pageSize = 12; 
-            int pageNumber = (page ?? 1); 
-            var items = db.Products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
+            var products = db.Products.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                products = products.Where(p => p.Title.Contains(searchTerm));
+            }
+
+            int pageSize = 12;
+            int pageNumber = (page ?? 1);
+            var items = products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
 
             return View(items);
         }

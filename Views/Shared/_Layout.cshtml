@@ -66,9 +66,9 @@
                                                 <i class="fa fa-angle-down"></i>
                                             </a>
                                             <ul class="account_selection">
-                                                <li><a href="/account/profile"><i class="fa fa-sign-in" aria-hidden="true"></i>Profile</a></li>
-                                                <li><a href="/wishlist/index"><i class="fa fa-list" aria-hidden="true"></i>Wish List</a></li>
-                                                <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-user-plus" aria-hidden="true"></i>Log Out</a></li>
+                                                <li><a href="/account/profile"><i class="fa fa-sign-in" aria-hidden="true"></i>Tài khoản</a></li>
+                                                <li><a href="/wishlist/index"><i class="fa fa-list" aria-hidden="true"></i>Ưa thích</a></li>
+                                                <li><a href="javascript:document.getElementById('logOffForm').submit()"><i class="fa fa-user-plus" aria-hidden="true"></i>Đăng xuất</a></li>
                                                 @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin"))
                                                 {
                                                     <li><a href="/admin/home"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>

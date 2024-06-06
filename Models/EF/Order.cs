@@ -12,6 +12,8 @@ namespace WebsiteBH.Models.EF
     [Table("tb_Order")]
     public class Order : CommonAbstract
     {
+        internal readonly int OrderId;
+
         public Order()
         {
             this.OrderDetails = new HashSet<OrderDetail>();

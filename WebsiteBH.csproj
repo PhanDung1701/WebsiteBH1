@@ -372,9 +372,16 @@
     <Compile Include="Migrations\202405290145438_update2951.Designer.cs">
       <DependentUpon>202405290145438_update2951.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202406040132058_update46.cs" />
+    <Compile Include="Migrations\202406040132058_update46.Designer.cs">
+      <DependentUpon>202406040132058_update46.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406060153155_update66.cs" />
+    <Compile Include="Migrations\202406060153155_update66.Designer.cs">
+      <DependentUpon>202406060153155_update66.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\EF\LikeProduct.cs" />
     <Compile Include="Models\EF\ReviewProduct.cs" />
     <Compile Include="Models\EF\ThongKe.cs" />
     <Compile Include="Models\EF\Wishlist.cs" />
@@ -385,13 +392,11 @@
     <Compile Include="Models\Common\Filter.cs" />
     <Compile Include="Models\EF\Adv.cs" />
     <Compile Include="Models\EF\Category.cs" />
-    <Compile Include="Models\EF\ChildComment.cs" />
     <Compile Include="Models\EF\Contact.cs" />
     <Compile Include="Models\EF\DatabaseGeneratedAtributeAttribute1.cs" />
     <Compile Include="Models\EF\News.cs" />
     <Compile Include="Models\EF\Order.cs" />
     <Compile Include="Models\EF\OrderDetail.cs" />
-    <Compile Include="Models\EF\ParentComment.cs" />
     <Compile Include="Models\EF\Posts.cs" />
     <Compile Include="Models\EF\Product.cs" />
     <Compile Include="Models\EF\ProductCategory.cs" />
@@ -3866,6 +3871,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405290145438_update2951.resx">
       <DependentUpon>202405290145438_update2951.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406040132058_update46.resx">
+      <DependentUpon>202406040132058_update46.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406060153155_update66.resx">
+      <DependentUpon>202406060153155_update66.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

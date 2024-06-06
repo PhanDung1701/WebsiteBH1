@@ -31,7 +31,16 @@
                     </div>
                     @Html.Action("MenuLeft", "Menu", new { id = ViewBag.CateId })
                 </div>
+                <style>
+                    .type_sorting_text {
+                        float: left;
+                        margin-right: 10px;
+                    }
 
+                    .fa-angle-down {
+                        margin-left: 5px;
+                    }
+                </style>
                 <!-- Price Range Filtering -->
                 <div class="sidebar_section">
                     <div class="sidebar_title">
@@ -50,40 +59,40 @@
 
                 <!-- Sizes -->
                 @*<div class="sidebar_section">
-                        <div class="sidebar_title">
-                            <h5>Sizes</h5>
-                        </div>
-                        <ul class="checkboxes">
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>S</span></li>
-                            <li class="active"><i class="fa fa-square" aria-hidden="true"></i><span>M</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>L</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>XL</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>XXL</span></li>
-                        </ul>
-                    </div>*@
+            <div class="sidebar_title">
+                <h5>Sizes</h5>
+            </div>
+            <ul class="checkboxes">
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>S</span></li>
+                <li class="active"><i class="fa fa-square" aria-hidden="true"></i><span>M</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>L</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>XL</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>XXL</span></li>
+            </ul>
+        </div>*@
 
                 <!-- Color -->
                 @*<div class="sidebar_section">
-                        <div class="sidebar_title">
-                            <h5>Color</h5>
-                        </div>
-                        <ul class="checkboxes">
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Black</span></li>
-                            <li class="active"><i class="fa fa-square" aria-hidden="true"></i><span>Pink</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
-                            <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
-                        </ul>
-                        <div class="show_more">
-                            <span><span>+</span>Show More</span>
-                        </div>
-                    </div>*@
+            <div class="sidebar_title">
+                <h5>Color</h5>
+            </div>
+            <ul class="checkboxes">
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Black</span></li>
+                <li class="active"><i class="fa fa-square" aria-hidden="true"></i><span>Pink</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>White</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Blue</span></li>
+                <li><i class="fa fa-square-o" aria-hidden="true"></i><span>Orange</span></li>
+            </ul>
+            <div class="show_more">
+                <span><span>+</span>Show More</span>
+            </div>
+        </div>*@
 
             </div>
 
@@ -99,68 +108,97 @@
 
                             <!-- Product Sorting -->
 
-                            <div class="product_sorting_container product_sorting_container_top">
-                                <ul class="product_sorting">
-                                    <li>
-                                        <span class="type_sorting_text">Sắp xếp</span>
-                                        <i class="fa fa-angle-down"></i>
-                                        <ul class="sorting_type">
-                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Mặc định</span></li>
-                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Theo giá</span></li>
-                                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Theo tên sản phẩm</span></li>
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <!-- Search Box -->
+                                    <form action="@Url.Action("Index", "Product")" method="get" class="form-inline">
+                                        <input type="text" name="searchTerm" class="form-control mr-2" style="width: 70%;" />
+                                        <button type="submit" class="btn btn-danger">Tìm kiếm</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <!-- Product Sorting -->
+                                    <div class="product_sorting_container_top">
+                                        <ul class="product_sorting">
+                                            <li>
+                                                <span class="type_sorting_text">Sắp xếp</span>
+                                                <i class="fa fa-angle-down"></i>
+                                                <ul class="sorting_type">
+                                                    <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Mặc định</span></li>
+                                                    <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Theo giá</span></li>
+                                                    <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Theo tên sản phẩm</span></li>
+                                                </ul>
+                                            </li>
                                         </ul>
-                                    </li>
-                                </ul>
-
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Product Grid -->
 
-                            <div class="product-grid">
-
-                                <!-- Product 1 -->
-                                @if (Model != null && Model.Any())
-                                {
-                                    foreach (var item in Model)
+                            <d<!-- Product Grid -->
+                                <div class="product-grid">
+                                    <!-- Product 1 -->
+                                    @if (Model != null && Model.Any())
                                     {
-                                        var strImge = "";
-                                        var img = item.ProductImage.FirstOrDefault(x => x.IsDefault);
-                                        if (img != null)
+                                        foreach (var item in Model)
                                         {
-                                            strImge = img.Image;
-                                        }
-                                        <div class="product-item @item.ProductCategory.Alias">
-                                            <div class="product discount product_filter">
-                                                <div class="product_image">
-                                                    <img src="@strImge" alt="@item.Title">
+                                            var strImge = "";
+                                            var img = item.ProductImage.FirstOrDefault(x => x.IsDefault);
+                                            if (img != null)
+                                            {
+                                                strImge = img.Image;
+                                            }
+
+                                            // Kiểm tra xem sản phẩm có trong wishlist không
+                                            var isWishlist = false;
+                                            if (User.Identity.IsAuthenticated)
+                                            {
+                                                // Nếu người dùng đã đăng nhập, kiểm tra xem sản phẩm có trong wishlist của người dùng không
+                                                var wishlistItem = item.Wishlists.FirstOrDefault(w => w.UserName == User.Identity.Name);
+                                                if (wishlistItem != null)
+                                                {
+                                                    isWishlist = true;
+                                                }
+                                            }
+
+                                            <div class="product-item @item.ProductCategory.Alias">
+                                                <div class="product discount product_filter">
+                                                    <div class="product_image">
+                                                        <img src="@strImge" alt="@item.Title">
+                                                    </div>
+                                                    @if (isWishlist)
+                                                    {
+                                                        <div class="favorite favorite_left active"></div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="favorite favorite_left"></div>
+                                                    }
+                                                    @if (item.IsSale)
+                                                    {
+                                                        <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                                                    }
+                                                    <div class="product_info">
+                                                        <h6 class="product_name"><a href="/chi-tiet/@item.Alias-p@(item.Id)">@item.Title</a></h6>
+                                                        @if (item.IsSale)
+                                                        {
+                                                            <div class="product_price">@WebsiteBH.Common.Common.FormatNumber(item.PriceSale, 0)đ<span>@WebsiteBH.Common.Common.FormatNumber(item.Price, 0)đ</span></div>
+                                                            <div style="display:none;" class="in_product_price">@item.PriceSale</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="product_price">@WebsiteBH.Common.Common.FormatNumber(item.Price, 0)đ</div>
+                                                            <div style="display:none;" class="in_product_price">@item.Price</div>
+                                                        }
+                                                    </div>
                                                 </div>
-                                                <div class="favorite favorite_left"></div>
-                                                @if (item.IsSale)
-                                                {
-                                                    <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
-                                                }
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="/chi-tiet/@item.Alias-p@(item.Id)">@item.Title</a></h6>
-                                                @if (item.IsSale)
-                                                {
-                                                    <div class="product_price">@WebsiteBH.Common.Common.FormatNumber(item.PriceSale, 0)đ<span>@WebsiteBH.Common.Common.FormatNumber(item.Price, 0)đ</span></div>
-                                                    <div style="display:none;" class="in_product_price">@item.PriceSale</div>
-                                                }
-                                                else
-                                                {
-                                                    <div class="product_price">@WebsiteBH.Common.Common.FormatNumber(item.Price, 0)đ</div>
-                                                    <div style="display:none;" class="in_product_price">@item.Price</div>
-                                                }
-
+                                                <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">Thêm vào giỏ hàng</a></div>
                                             </div>
-                                            </div>
-                                            <div class="red_button add_to_cart_button"><a href="#" class="btnAddToCart" data-id="@item.Id">Thêm vào giỏ hàng</a></div>
-                                        </div>
+                                        }
                                     }
-                                }
+                                </div>
 
-
-                            </div>
                             <div class="row">
                                 <div class="col-12" style="text-align:center;">
                                     @Html.PagedListPager(Model, page => Url.Action("ProductCategory", new { page }), new PagedListRenderOptions

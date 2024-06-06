@@ -44,7 +44,6 @@ namespace WebsiteBH.Models.EF
         public virtual ICollection<ReviewProduct> Reviews { get; set; }
         public virtual ICollection<Wishlist> Wishlists { get; set; }
         public ICollection<OrderDetail> OrderDetail { get; set; }
-        public virtual ICollection<ParentComment> ParentComments { get; set; }
         public int ViewCount { get; internal set; }
     }
 }
